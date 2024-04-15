@@ -1,0 +1,295 @@
+<div class="containerHeader">
+  <div class="logo">
+    <img src="assets/Logo.png" alt="">
+  </div>
+  <div>
+    <h1>BIENVENIDO A MEDIAGENDA {{datosPaciente?.nombre}}</h1>
+  </div>
+</div>
+
+<div class="mainHome">
+
+  <button type="button" class="btn btn-primary" (click)="openModal(registroPrimeraVez)" *ngIf="primeraVez">Registro primera vez</button>
+  <button type="button" class="btn btn-primary" (click)="openModal(registroCita)" *ngIf="!primeraVez">Nueva cita médica</button>
+
+  <!-- <button type="button" class="btn btn-warning ml" (click)="openModal(registroCita)" *ngIf="!primeraVez">Actualizar datos</button> -->
+
+  <div class="tableHome">
+    <table class="table table-striped tableLibros">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Médico o Especialista</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Motivo de la cita</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Observaciones</th>
+          <th scope="col">Cancelar Cita</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (citas of citasMedicas; track citas; let i = $index) {
+          <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ citas.medico }}</td>
+            <td>{{ citas.fecha.day }} / {{ citas.fecha.month }} / {{ citas.fecha.year }}</td>
+            <td>{{ citas.hora.hour }}:{{ citas.hora.minute }}</td>
+            <td>{{ citas.motivo }}</td>
+            <td>{{ citas.especialidad }}</td>
+            <td>{{ citas.observaciones }}</td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="cancelarCita(citas.id)" *ngIf="citas.id !== 1">Cancelar Cita</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+<ng-template #registroPrimeraVez let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Crear nueva cita médica</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+
+    <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar"
+      [ngClass]="{'bg-danger': progressBar === '10%', 'bg-warning': progressBar === '40%', 'bg-success': progressBar === '80%', 'bg-info': progressBar === '100%'}"
+      [ngStyle]="{'width': progressBar}"></div>
+    </div>
+
+    <div class="informacionPaciente spaceInput" *ngIf="stepRegistroCita === 0">
+      <h2>Información del paciente</h2>
+
+      <div class="row">
+
+          <div class="col-md-12 spaceInput">
+            <label class="form-label">Nombre completo</label>
+            <input [(ngModel)]="nombrePaciente" type="text" class="form-control" id="nombrePaciente" placeholder="Nombre completo">
+          </div>
+
+          <div class="col-md-6 spaceInput">
+            <label class="form-label">Tipo de identificación</label>
+            <select [(ngModel)]="tipoIdentificacion" class="form-select" aria-label="Default select example">
+              <option value="0" selected disabled>Escoja un tipo...</option>
+              <option value="1">Cedula de Ciudadania</option>
+              <option value="2">Tarjeta de identidad</option>
+              <option value="3">Otro...</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 spaceInput">
+            <label class="form-label">Número de identificación</label>
+            <input [(ngModel)]="numeroIdentificacion" type="text" class="form-control" id="nombrePaciente" placeholder="Número de identificación">
+          </div>
+
+
+          <div class="col-md-6 spaceInput">
+            <label class="form-label">Fecha de nacimiento</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                [(ngModel)]="fechaNacimiento"
+                ngbDatepicker
+                #d="ngbDatepicker"
+              />
+			        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+
+          <div class="col-md-6 spaceInput">
+            <label class="form-label">Género</label>
+            <select [(ngModel)]="generoPaciente" class="form-select" aria-label="Default select example">
+              <option value="0" selected disabled>Escoja uno...</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
+              <option value="3">Otro...</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 spaceInput">
+            <label class="form-label">Correo electrónico</label>
+            <input [(ngModel)]="correoPaciente" type="email" class="form-control" id="nombrePaciente" placeholder="Número de identificación">
+          </div>
+
+          <div class="col-md-6 spaceInput">
+            <label class="form-label">Número de teléfono</label>
+            <input [(ngModel)]="telefonoPaciente" type="text" class="form-control" id="nombrePaciente" placeholder="Número de teléfono">
+          </div>
+
+          <div class="col-md-12 spaceInput">
+            <label class="form-label">Dirección de residencia</label>
+            <input [(ngModel)]="direccionPaciente" type="text" class="form-control" id="nombrePaciente" placeholder="Dirección de residencia">
+          </div>
+      </div>
+    </div>
+
+    <div class="informacionCita spaceInput" *ngIf="stepRegistroCita === 1">
+      <h2>Información de la Cita</h2>
+
+      <div class="row">
+
+        <div class="col-md-12 spaceInput">
+          <div class="alert alert-info" role="alert">
+            Como es su primer registro, automaticamente se le asignara a Consulta General como primer agendamiento.
+          </div>
+        </div>
+
+        <div class="col-md-12 spaceInput">
+          <label class="form-label">Motivo de la cita</label>
+          <select [(ngModel)]="motivoCita" disabled class="form-select" aria-label="Default select example">
+            <option value="0" selected disabled>¿Por qué necesita la cita?</option>
+            <option value="Consulta General">Consulta General</option>
+            <option value="Especialidad">Especialidad</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 spaceInput">
+          <label class="form-label">Especialidad</label>
+          <select [(ngModel)]="especialidadCita" disabled class="form-select" aria-label="Default select example">
+            <option value="0" selected disabled>Escoja una especialidad</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 spaceInput">
+          <label class="form-label">Médico o especialista</label>
+          <select [(ngModel)]="medicoCita" class="form-select" aria-label="Default select example">
+            <option value="0" selected disabled>Escoja un médico</option>
+            <option *ngFor="let medico of medicosEspecialidad" value="{{medico.nombre}}">{{medico.nombre}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 spaceInput">
+          <label class="form-label">Fecha de la cita</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              [(ngModel)]="fechaCita"
+              ngbDatepicker
+              #d="ngbDatepicker"
+            />
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+
+        <div class="col-md-6 spaceInput2">
+          <!-- <label class="form-label">Hora de la cita</label> -->
+          <ngb-timepicker [(ngModel)]="horaCita" [meridian]="meridian" />
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label">Observaciones o notas adicionales</label>
+          <textarea [(ngModel)]="observacionesCita" class="form-control" rows="3"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="informacionCita spaceInput" *ngIf="stepRegistroCita >= 2">
+      <h2>Historial Médico</h2>
+
+      <div class="row">
+
+        <div class="col-md-12 spaceInput">
+          <label class="form-label">Alergias</label>
+          <textarea [(ngModel)]="alergiasPaciente" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="col-md-12 spaceInput">
+          <label class="form-label">Medicamentos actuales</label>
+          <textarea [(ngModel)]="medicamentosPaciente" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="col-md-12 spaceInput">
+          <label class="form-label">Enfermedades crónicas o antecedentes médicos</label>
+          <textarea [(ngModel)]="enfermedadesPaciente" class="form-control" rows="3"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" [disabled]="validarFormulario()" (click)="nextStepRegistro()">{{registroButton}}</button>
+	</div>
+</ng-template>
+
+<ng-template #registroCita let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Crear nueva cita médica</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+
+    <div class="informacionCita spaceInput">
+      <h2>Información de la Cita</h2>
+
+      <div class="row">
+
+        <div class="col-md-12 spaceInput">
+          <label class="form-label">Motivo de la cita</label>
+          <select (change)="filtrarMedicos(motivoCita)" [(ngModel)]="motivoCita" class="form-select" aria-label="Default select example">
+            <option value="0" selected disabled>¿Por qué necesita la cita?</option>
+            <option value="Consulta General">Consulta General</option>
+            <option value="Especialidad">Especialidad</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 spaceInput">
+          <label class="form-label">Especialidad</label>
+          <select (change)="filtrarMedicos(especialidadCita)" [(ngModel)]="especialidadCita" [disabled]="motivoCita!='Especialidad'" class="form-select" aria-label="Default select example">
+            <option value="0" selected disabled>Escoja una especialidad</option>
+            <option *ngFor="let especialidad of especialidades" value="{{especialidad.nombre}}">{{especialidad.nombre}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 spaceInput">
+          <label class="form-label">Médico o especialista</label>
+          <select [(ngModel)]="medicoCita" class="form-select" aria-label="Default select example">
+            <option value="0" selected disabled>Escoja un médico</option>
+            <option *ngFor="let medico of medicosEspecialidad" value="{{medico.nombre}}">{{medico.nombre}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 spaceInput">
+          <label class="form-label">Fecha de la cita</label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              [(ngModel)]="fechaCita"
+              ngbDatepicker
+              #d="ngbDatepicker"
+            />
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+
+        <div class="col-md-6 spaceInput2">
+          <!-- <label class="form-label">Hora de la cita</label> -->
+          <ngb-timepicker [(ngModel)]="horaCita" [meridian]="meridian" />
+        </div>
+
+        <div class="col-md-12">
+          <label class="form-label">Observaciones o notas adicionales</label>
+          <textarea [(ngModel)]="observacionesCita" class="form-control" rows="3"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" [disabled]="validarFormularioCita()" (click)="guardarCitasMedicas()">Guardar</button>
+	</div>
+</ng-template>

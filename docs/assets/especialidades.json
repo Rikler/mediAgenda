@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "nombre": "Alergología"
+    },
+    {
+      "nombre": "Anestesiología y Reanimación"
+    },
+    {
+      "nombre": "Cardiología"
+    },
+    {
+      "nombre": "Dermatología"
+    },
+    {
+      "nombre": "Endocrinología y Nutrición"
+    },
+    {
+      "nombre": "Gastroenterología"
+    },
+    {
+      "nombre": "Hematología y Hemoterapia"
+    },
+    {
+      "nombre": "Neumología"
+    },
+    {
+      "nombre": "Oftalmología"
+    },
+    {
+      "nombre": "Reumatología"
+    }
+  ]
+}

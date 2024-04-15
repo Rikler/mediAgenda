@@ -1,0 +1,136 @@
+{
+  "data": [
+    {
+      "nombre": "Juan Pérez",
+      "especialidad": "Alergología"
+    },
+    {
+      "nombre": "María Rodríguez",
+      "especialidad": "Alergología"
+    },
+    {
+      "nombre": "Carlos Rodríguez",
+      "especialidad": "Alergología"
+    },
+    {
+      "nombre": "Ana García",
+      "especialidad": "Anestesiología y Reanimación"
+    },
+    {
+      "nombre": "Alejandro García",
+      "especialidad": "Anestesiología y Reanimación"
+    },
+    {
+      "nombre": "Laura Pérez",
+      "especialidad": "Anestesiología y Reanimación"
+    },
+    {
+      "nombre": "Luis Martínez",
+      "especialidad": "Cardiología"
+    },
+    {
+      "nombre": "Sofía Martínez",
+      "especialidad": "Cardiología"
+    },
+    {
+      "nombre": "Andrés López",
+      "especialidad": "Cardiología"
+    },
+    {
+      "nombre": "Valentina López",
+      "especialidad": "Dermatología"
+    },
+    {
+      "nombre": "Diego Sánchez",
+      "especialidad": "Dermatología"
+    },
+    {
+      "nombre": "Camila Sánchez",
+      "especialidad": "Dermatología"
+    },
+    {
+      "nombre": "Pedro Fernández",
+      "especialidad": "Endocrinología y Nutrición"
+    },
+    {
+      "nombre": "Isabella Fernández",
+      "especialidad": "Endocrinología y Nutrición"
+    },
+    {
+      "nombre": "Gabriel Torres",
+      "especialidad": "Endocrinología y Nutrición"
+    },
+    {
+      "nombre": "Lucía Torres",
+      "especialidad": "Gastroenterología"
+    },
+    {
+      "nombre": "Ricardo Ramírez",
+      "especialidad": "Gastroenterología"
+    },
+    {
+      "nombre": "Gabriela Ramírez",
+      "especialidad": "Gastroenterología"
+    },
+    {
+      "nombre": "Manuel González",
+      "especialidad": "Hematología y Hemoterapia"
+    },
+    {
+      "nombre": "Valeria González",
+      "especialidad": "Hematología y Hemoterapia"
+    },
+    {
+      "nombre": "Mateo Jiménez",
+      "especialidad": "Hematología y Hemoterapia"
+    },
+    {
+      "nombre": "María Rodríguez",
+      "especialidad": "Neumología"
+    },
+    {
+      "nombre": "Miguel Díaz",
+      "especialidad": "Neumología"
+    },
+    {
+      "nombre": "Ana García",
+      "especialidad": "Neumología"
+    },
+    {
+      "nombre": "Miguel Morales",
+      "especialidad": "Oftalmología"
+    },
+    {
+      "nombre": "Laura Pérez",
+      "especialidad": "Oftalmología"
+    },
+    {
+      "nombre": "Matías Díaz",
+      "especialidad": "Oftalmología"
+    },
+    {
+      "nombre": "Sofía Martínez",
+      "especialidad": "Reumatología"
+    },
+    {
+      "nombre": "Nicolás Romero",
+      "especialidad": "Reumatología"
+    },
+    {
+      "nombre": "Valentina López",
+      "especialidad": "Reumatología"
+    },
+    {
+      "nombre": "Gabriel Torres",
+      "especialidad": "Consulta General"
+    },
+    {
+      "nombre": "Sofía Martínez",
+      "especialidad": "Consulta General"
+    },
+    {
+      "nombre": "Isabella Fernández",
+      "especialidad": "Consulta General"
+    }
+  ]
+}

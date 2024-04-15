@@ -1,0 +1,39 @@
+.containerHeader {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 6rem;
+  border: 1px solid black;
+  border-radius: 0 0 8px 8px;
+  top: 0;
+  text-align: center;
+  padding: 1rem;
+  // background: linear-gradient(to bottom, #9AF8D0, #9AF8ED, #9AF8D0);
+}
+
+.logo {
+  float: left;
+  img {
+    width: 65px;
+  }
+}
+
+.mainHome {
+  margin: 8% 10%;
+}
+
+.tableHome {
+  margin-top: 2rem;
+}
+
+.spaceInput {
+  margin-top: 1rem;
+}
+
+.spaceInput2 {
+  margin-top: 0.64rem;
+}
+
+.ml {
+  margin-left: 1rem;
+}
